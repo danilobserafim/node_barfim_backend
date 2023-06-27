@@ -81,12 +81,12 @@ router.post("/", (req, res, next) => {
     mysql.getConnection((error, conn) => {
       try {
         conn.query(
-          `INSERT INTO clientes (nome_cliente, telefone_cliente, email_cliente) VALUES(?,?,?)`,
+          `INSERT INTO clientes (nome_cliente, telefone_cliente, email_cliente, ACCOUNT_STATUS_ID) VALUES(?,?,?,1)`,
           [nome, telefone, email],
           (erro, result, field) => {
             conn.release();
             if (erro) {
-              return res.status(500).send({
+              return res.status(501).send({
                 message: "Algo deu errado, tente novamente",
               });
             }
