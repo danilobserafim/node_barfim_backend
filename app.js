@@ -22,4 +22,10 @@ app.use("/produtos", routeProdutos)
 app.use("/carrinhos", routeCarrinhos)
 app.use("/categorias", routeCategorias)
 
+app.get("/",(req, res, next)=>{
+    res.send({
+        mensagem: "Funcionando"
+    })
+})
+
 module.exports = app;
