@@ -103,7 +103,7 @@ router.post("/", (req, res, next)=>{
           }
           carrinho.map(async produto =>{
             const data = {produto_id: produto.produto_id, venda_id: result.insertId}
-            await fetch("http://localhost:3000/carrinhos", { method: "POST", 
+            await fetch(`${process.env.BASE_URL}/carrinhos`, { method: "POST", 
             mode: "cors", 
             headers: {
               "Content-Type": "application/json",

@@ -20,7 +20,7 @@ router.get("/", (req, res, next)=>{
                   nome: cliente.nome_cliente,
                   email: cliente.email_cliente,
                   telefone: cliente.telefone_cliente,
-                  mais: `http://localhost:3000/clientes/${cliente.id_cliente}/`
+                  mais: `${process.env.BASE_URL}/clientes/${cliente.id_cliente}/`
               }
               })
             });
@@ -64,7 +64,7 @@ router.get("/:id", (req, res, next)=>{
                     desconto: parseFloat(venda.desconto).toFixed(2),
                     total: parseFloat(venda.total).toFixed(2),
                     data: `${dia}/${mes}/${ano}`,
-                    mais: `http://localhost:3000/vendas/${venda.id_venda}`
+                    mais: `${process.env.BASE_URL}/vendas/${venda.id_venda}`
                 })
             })
             });
