@@ -75,7 +75,7 @@ router.get("/", (req, res, next)=>{
               valor: parseFloat(venda.valor_venda).toFixed(2),
               desconto:parseFloat( venda.desconto).toFixed(2),
               total: venda.total,
-              detalhes: `http://localhost:3000/vendas/${venda.id_venda}`
+              detalhes: `${process.env.BASE_URL}/vendas/${venda.id_venda}`
           })
           }));
         });
