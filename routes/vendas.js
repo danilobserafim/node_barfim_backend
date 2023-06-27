@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const mysql = require("../mysql");
+require("dotenv").config()
 
 router.get("/:ID", (req, res, next)=>{
     const id = req.params.ID
