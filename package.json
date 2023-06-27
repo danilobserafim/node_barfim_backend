@@ -2,7 +2,7 @@
   "name": "node_barfim",
   "version": "1.0.0",
   "description": "backend para gerenciamento de vendas da empresa 'Barfim Store'",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js",
