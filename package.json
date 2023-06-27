@@ -1,0 +1,28 @@
+{
+  "name": "node_barfim",
+  "version": "1.0.0",
+  "description": "backend para gerenciamento de vendas da empresa 'Barfim Store'",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js",
+    "build": "build ./"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.22"
+  },
+  "keywords": [
+    "backend",
+    "restaurante",
+    "mesa"
+  ],
+  "author": "danilo serafim",
+  "license": "ISC"
+}
