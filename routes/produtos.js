@@ -50,6 +50,33 @@ router.get("/:id", (req, res, next)=>{
 })
 
 
+router.post("/", (req, res, next)=>{
+    let {nome, categoria, descricao, valor, quantidade} = req.body
+    mysql.getConnection((error, conn)=>{
+        try {
+            conn.query(`INSERT INTO produtos( nome_produto, categoria_id, descricao_produto, valor_produto, quantidade_produto) 
+                        VALUES (?, ?, ?, ?, ?)`, [nome, categoria, descricao,valor, quantidade], (erro, result)=>{
+                conn.release()
+                if (erro) {
+                    return res.status(500).send({
+                      message: "algo deu errado",
+                    });
+                  }
+                  
+                  res.status(200).send({//result
+                    message: "produto cadastrado"
+                })
+            })
+        } catch (error) {
+            res.status(500).send({
+                message: "algo deu errado depois",
+              });
+        }
+    })
+})
+
+
+
 
 
 module.exports = router;

@@ -9,7 +9,7 @@ require("dotenv").config()
 router.get("/", (req, res, next)=>{
     mysql.getConnection((error, conn)=>{
         try {
-            conn.query("SELECT nome_categoria FROM categorias", (erro, result)=>{
+            conn.query("SELECT * FROM categorias", (erro, result)=>{
                 conn.release()
                 if (erro || !result[0]) {
                     return res.status(500).send({
