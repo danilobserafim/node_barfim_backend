@@ -55,7 +55,7 @@ router.post("/", (req, res, next)=>{
     mysql.getConnection((error, conn)=>{
         try {
             conn.query(`INSERT INTO produtos( nome_produto, categoria_id, descricao_produto, valor_produto, quantidade_produto) 
-                        VALUES (?, ?, ?, ?, ?)`, [nome, categoria, descricao,valor, quantidade], (erro, result)=>{
+                        VALUES (?, ?, ?, ?, ?)`, [nome, categoria, descricao, valor, quantidade], (erro, result)=>{
                 conn.release()
                 if (erro) {
                     return res.status(500).send({
