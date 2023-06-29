@@ -76,12 +76,13 @@ router.get("/:id", (req, res, next)=>{
         }
       });
 })
+
 router.post("/", (req, res, next) => {
     const { nome, telefone, email } = req.body;
     mysql.getConnection((error, conn) => {
       try {
         conn.query(
-          `INSERT INTO clientes (nome_cliente, telefone_cliente, email_cliente, ACCOUNT_STATUS_ID) VALUES(?,?,?,1)`,
+          `INSERT INTO clientes (nome_cliente, telefone_cliente, email_cliente) VALUES(?,?,?)`,
           [nome, telefone, email],
           (erro, result, field) => {
             conn.release();
