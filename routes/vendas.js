@@ -101,6 +101,7 @@ router.post("/", (req, res, next)=>{
               message: "nada encontrado",
             });
           }
+          carrinho = JSON.parse(carrinho)
           carrinho.map(async produto =>{
             const data = {produto_id: produto.id, venda_id: result.insertId}
             await fetch(`${process.env.BASE_URL}/carrinhos`, { method: "POST", 
