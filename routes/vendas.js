@@ -92,7 +92,7 @@ router.post("/", (req, res, next)=>{
   const {cliente_id, valor_venda, desconto, total, carrinho } = req.body
   mysql.getConnection((error, conn) => {
       try {
-        conn.query(`INSERT INTO vendas (cliente_id, valor_venda, desconto, total, pago, data) VALUES (?,?,?,?,0, now()) `, 
+        conn.query(`INSERT INTO vendas (cliente_id, valor_venda, desconto, total,  data) VALUES (?,?,?,?, now()) `, 
         [cliente_id, valor_venda, desconto, total], 
         (erro, result, field) => {
           conn.release();
@@ -102,9 +102,7 @@ router.post("/", (req, res, next)=>{
             });
           }
           carrinho.map(async produto =>{
-            let vendaId = parseInt(result.insertId)
-            let produtoId = parseInt(produto.id)
-            const data = {produto_id: produtoId, venda_id: vendaId}
+            const data = {produto_id: produto.id, venda_id: result.insertId}
             await fetch(`${process.env.BASE_URL}/carrinhos`, { method: "POST", 
             mode: "cors", 
             headers: {
