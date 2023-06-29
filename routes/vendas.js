@@ -103,7 +103,8 @@ router.post("/", (req, res, next)=>{
           }
           carrinho.map(async produto =>{
             let vendaId = parseInt(result.insertId)
-            const data = {produto_id: produto.id, venda_id: vendaId}
+            let produtoId = parseInt(produto.id)
+            const data = {produto_id: produtoId, venda_id: vendaId}
             await fetch(`${process.env.BASE_URL}/carrinhos`, { method: "POST", 
             mode: "cors", 
             headers: {
