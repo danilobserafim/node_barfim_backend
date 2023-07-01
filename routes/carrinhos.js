@@ -10,12 +10,12 @@ require("dotenv").config()
 router.post("/", (req, res, next)=>{
     const {venda_id, carrinho} = req.body
     mysql.getConnection((error, conn) => {
+      conn.release();
         try {
           carrinho.map(produto=>{
             conn.query(`INSERT INTO carrinhos (venda_id, produto_id) VALUES (?, ?)`, 
             [venda_id, produto.id],
             (erro, result, field) => {
-              conn.release();
               if (erro) {
                 return res.status(500).send({
                   message: "nada encontrado",
