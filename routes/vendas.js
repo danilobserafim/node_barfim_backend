@@ -89,7 +89,7 @@ router.get("/", (req, res, next)=>{
 })
 
 router.post("/", (req, res, next)=>{
-  const {cliente_id, valor_venda, desconto, total, carrinho } = req.body
+  const {cliente_id, valor_venda, desconto, total } = req.body
   mysql.getConnection((error, conn) => {
       try {
         conn.query(`INSERT INTO vendas (cliente_id, valor_venda, desconto, total,  data) VALUES (?,?,?,?, now()) `, 
@@ -101,16 +101,6 @@ router.post("/", (req, res, next)=>{
               message: "nada encontrado",
             });
           }
-          carrinho.map(async produto =>{
-            const data = {produto_id: produto.id, venda_id: result.insertId}
-            await fetch(`${process.env.BASE_URL}/carrinhos`, { method: "POST", 
-            mode: "cors", 
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data)
-          })
-          })
           res.status(200).send(result);
         });
       } catch (error) {

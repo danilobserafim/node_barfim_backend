@@ -61,8 +61,7 @@ router.post("/", (req, res, next)=>{
                     return res.status(500).send({
                       message: "algo deu errado",
                     });
-                  }
-                  
+                  }                  
                   res.status(200).send({//result
                     message: "produto cadastrado"
                 })
