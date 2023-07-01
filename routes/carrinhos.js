@@ -10,24 +10,26 @@ require("dotenv").config()
 router.post("/", (req, res, next)=>{
     const {venda_id, carrinho} = req.body
     mysql.getConnection((error, conn) => {
-      conn.release();
-        try {
-          carrinho.map(produto=>{
-            conn.query(`INSERT INTO carrinhos (venda_id, produto_id) VALUES (?, ?)`, 
-            [venda_id, produto.id],
-            (erro, result, field) => {
-              if (erro) {
-                return res.status(500).send({
-                  message: "nada encontrado",
-                });
-              }
-              res.status(200).send(result);
-            });
-          })
+      try {
+        carrinho.map(produto=>{
+          conn.query(`INSERT INTO carrinhos (venda_id, produto_id) VALUES (?, ?)`, 
+          [venda_id, produto.id],
+          (erro, result, field) => {
+            if (erro) {
+              return res.status(500).send({
+                message: "nada encontrado",
+              });
+            }
+            res.status(200).send(result);
+          });
+        })
+        conn.release();
         } catch (error) {
+        conn.release();
           res.status(500).send({
             message: "algo deu errado",
           });
+
         }
       });
   })
