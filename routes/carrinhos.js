@@ -13,7 +13,7 @@ router.post("/", (req, res, next)=>{
         try {
           carrinho.map(produto=>{
             conn.query(`INSERT INTO carrinhos (venda_id, produto_id) VALUES (?, ?)`, 
-            [venda_id, produto.produto_id],
+            [venda_id, produto.id],
             (erro, result, field) => {
               conn.release();
               if (erro) {
