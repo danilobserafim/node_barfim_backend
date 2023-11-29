@@ -92,7 +92,7 @@ router.post("/", (req, res, next)=>{
   const {cliente_id, valor_venda, desconto, total } = req.body
   mysql.getConnection((error, conn) => {
       try {
-        conn.query(`INSERT INTO vendas (cliente_id, valor_venda, desconto, total,  data) VALUES (?,?,?,?, now()) `, 
+        conn.query(`INSERT INTO vendas (cliente_id, valor_venda, desconto, total,  data) VALUES (?,?,?,?, NOW()) `, 
         [cliente_id, valor_venda, desconto, total], 
         (erro, result, field) => {
           conn.release();
