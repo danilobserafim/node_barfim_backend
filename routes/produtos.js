@@ -7,7 +7,7 @@ require("dotenv").config()
 router.get("/", (req, res, next)=>{
     mysql.getConnection((error, conn)=>{
         try {
-            conn.query("select id_produto, nome_produto, descricao_produto, valor_produto, quantidade_produto, nome_categoria  from produtos INNER JOIN categorias ON categoria_id = id_categoria", (erro, result)=>{
+            conn.query("select id_produto, nome_produto, descricao_produto, valor_produto, quantidade_produto, nome_categoria  from produtos INNER JOIN categorias ON categoria_id = id_categoria order by produtos.quantidade_produto desc", (erro, result)=>{
                 conn.release()
                 if (erro || !result[0]) {
                     return res.status(500).send({
