@@ -57,7 +57,7 @@ router.get("/", (req, res, next)=>{
   mysql.getConnection((error, conn) => {
       try {
         conn.query(`SELECT * FROM vendas 
-                    INNER JOIN clientes ON cliente_id = id_cliente order by data desc`, (erro, result, field) => {
+                    INNER JOIN clientes ON cliente_id = id_cliente order by vid_venda desc`, (erro, result, field) => {
           conn.release();
           if (erro || !result[0]) {
             return res.status(500).send({
